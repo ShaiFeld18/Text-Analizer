@@ -1,0 +1,411 @@
+{
+    "Question 2": {
+        "5-Seq Counts": [
+            [
+                "1_seq",
+                [
+                    [
+                        "alarmingly",
+                        1
+                    ],
+                    [
+                        "another",
+                        1
+                    ],
+                    [
+                        "curtly",
+                        1
+                    ],
+                    [
+                        "detention",
+                        1
+                    ],
+                    [
+                        "door",
+                        1
+                    ],
+                    [
+                        "face",
+                        2
+                    ],
+                    [
+                        "flashing",
+                        1
+                    ],
+                    [
+                        "footsteps",
+                        1
+                    ],
+                    [
+                        "gargoyle",
+                        1
+                    ],
+                    [
+                        "given",
+                        1
+                    ],
+                    [
+                        "harry",
+                        5
+                    ],
+                    [
+                        "hasn",
+                        1
+                    ],
+                    [
+                        "heard",
+                        1
+                    ],
+                    [
+                        "high",
+                        1
+                    ],
+                    [
+                        "knocked",
+                        1
+                    ],
+                    [
+                        "mcgonagall",
+                        3
+                    ],
+                    [
+                        "ooooh",
+                        1
+                    ],
+                    [
+                        "opened",
+                        1
+                    ],
+                    [
+                        "pitched",
+                        1
+                    ],
+                    [
+                        "place",
+                        1
+                    ],
+                    [
+                        "professor",
+                        1
+                    ],
+                    [
+                        "spectacles",
+                        1
+                    ],
+                    [
+                        "square",
+                        1
+                    ],
+                    [
+                        "urgent",
+                        2
+                    ],
+                    [
+                        "us",
+                        1
+                    ],
+                    [
+                        "voice",
+                        1
+                    ],
+                    [
+                        "well",
+                        1
+                    ]
+                ]
+            ],
+            [
+                "2_seq",
+                [
+                    [
+                        "another detention",
+                        1
+                    ],
+                    [
+                        "door opened",
+                        1
+                    ],
+                    [
+                        "face face",
+                        1
+                    ],
+                    [
+                        "face professor",
+                        1
+                    ],
+                    [
+                        "flashing alarmingly",
+                        1
+                    ],
+                    [
+                        "footsteps door",
+                        1
+                    ],
+                    [
+                        "gargoyle high",
+                        1
+                    ],
+                    [
+                        "given another",
+                        1
+                    ],
+                    [
+                        "harry curtly",
+                        1
+                    ],
+                    [
+                        "harry face",
+                        1
+                    ],
+                    [
+                        "harry harry",
+                        1
+                    ],
+                    [
+                        "harry heard",
+                        1
+                    ],
+                    [
+                        "harry knocked",
+                        1
+                    ],
+                    [
+                        "heard footsteps",
+                        1
+                    ],
+                    [
+                        "high pitched",
+                        1
+                    ],
+                    [
+                        "mcgonagall mcgonagall",
+                        1
+                    ],
+                    [
+                        "mcgonagall square",
+                        1
+                    ],
+                    [
+                        "ooooh urgent",
+                        1
+                    ],
+                    [
+                        "opened harry",
+                        1
+                    ],
+                    [
+                        "pitched voice",
+                        1
+                    ],
+                    [
+                        "place hasn",
+                        1
+                    ],
+                    [
+                        "professor mcgonagall",
+                        1
+                    ],
+                    [
+                        "spectacles flashing",
+                        1
+                    ],
+                    [
+                        "square spectacles",
+                        1
+                    ],
+                    [
+                        "urgent harry",
+                        1
+                    ],
+                    [
+                        "us place",
+                        1
+                    ],
+                    [
+                        "well us",
+                        1
+                    ]
+                ]
+            ],
+            [
+                "3_seq",
+                [
+                    [
+                        "door opened harry",
+                        1
+                    ],
+                    [
+                        "face face professor",
+                        1
+                    ],
+                    [
+                        "face professor mcgonagall",
+                        1
+                    ],
+                    [
+                        "footsteps door opened",
+                        1
+                    ],
+                    [
+                        "gargoyle high pitched",
+                        1
+                    ],
+                    [
+                        "given another detention",
+                        1
+                    ],
+                    [
+                        "harry face face",
+                        1
+                    ],
+                    [
+                        "harry harry face",
+                        1
+                    ],
+                    [
+                        "harry heard footsteps",
+                        1
+                    ],
+                    [
+                        "heard footsteps door",
+                        1
+                    ],
+                    [
+                        "high pitched voice",
+                        1
+                    ],
+                    [
+                        "mcgonagall mcgonagall square",
+                        1
+                    ],
+                    [
+                        "mcgonagall square spectacles",
+                        1
+                    ],
+                    [
+                        "opened harry harry",
+                        1
+                    ],
+                    [
+                        "spectacles flashing alarmingly",
+                        1
+                    ],
+                    [
+                        "square spectacles flashing",
+                        1
+                    ],
+                    [
+                        "urgent harry curtly",
+                        1
+                    ],
+                    [
+                        "us place hasn",
+                        1
+                    ],
+                    [
+                        "well us place",
+                        1
+                    ]
+                ]
+            ],
+            [
+                "4_seq",
+                [
+                    [
+                        "door opened harry harry",
+                        1
+                    ],
+                    [
+                        "face face professor mcgonagall",
+                        1
+                    ],
+                    [
+                        "footsteps door opened harry",
+                        1
+                    ],
+                    [
+                        "gargoyle high pitched voice",
+                        1
+                    ],
+                    [
+                        "harry face face professor",
+                        1
+                    ],
+                    [
+                        "harry harry face face",
+                        1
+                    ],
+                    [
+                        "harry heard footsteps door",
+                        1
+                    ],
+                    [
+                        "heard footsteps door opened",
+                        1
+                    ],
+                    [
+                        "mcgonagall mcgonagall square spectacles",
+                        1
+                    ],
+                    [
+                        "mcgonagall square spectacles flashing",
+                        1
+                    ],
+                    [
+                        "opened harry harry face",
+                        1
+                    ],
+                    [
+                        "square spectacles flashing alarmingly",
+                        1
+                    ],
+                    [
+                        "well us place hasn",
+                        1
+                    ]
+                ]
+            ],
+            [
+                "5_seq",
+                [
+                    [
+                        "door opened harry harry face",
+                        1
+                    ],
+                    [
+                        "footsteps door opened harry harry",
+                        1
+                    ],
+                    [
+                        "harry face face professor mcgonagall",
+                        1
+                    ],
+                    [
+                        "harry harry face face professor",
+                        1
+                    ],
+                    [
+                        "harry heard footsteps door opened",
+                        1
+                    ],
+                    [
+                        "heard footsteps door opened harry",
+                        1
+                    ],
+                    [
+                        "mcgonagall mcgonagall square spectacles flashing",
+                        1
+                    ],
+                    [
+                        "mcgonagall square spectacles flashing alarmingly",
+                        1
+                    ],
+                    [
+                        "opened harry harry face face",
+                        1
+                    ]
+                ]
+            ]
+        ]
+    }
+}

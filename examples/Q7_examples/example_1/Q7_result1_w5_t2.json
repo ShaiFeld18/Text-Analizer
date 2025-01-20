@@ -1,0 +1,19 @@
+{
+    "Question 7": [
+        [
+            "harry potter",
+            "aurelius dumbledore",
+            true
+        ],
+        [
+            "hermione granger",
+            "draco malfoy",
+            false
+        ],
+        [
+            "hermione granger",
+            "harry potter",
+            false
+        ]
+    ]
+}

@@ -1,0 +1,44 @@
+{
+    "Question 4": {
+        "K-Seq Matches": [
+            [
+                "break",
+                [
+                    [
+                        "frog",
+                        "allowed",
+                        "remain",
+                        "inside",
+                        "break",
+                        "due",
+                        "downpour",
+                        "outside"
+                    ]
+                ]
+            ],
+            [
+                "three weeks",
+                [
+                    [
+                        "realise",
+                        "re",
+                        "three",
+                        "weeks",
+                        "away",
+                        "match"
+                    ]
+                ]
+            ],
+            [
+                "together",
+                [
+                    [
+                        "ron",
+                        "harry",
+                        "together"
+                    ]
+                ]
+            ]
+        ]
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "Question 4": {
+        "K-Seq Matches": [
+            [
+                "harry heard",
+                [
+                    [
+                        "harry",
+                        "heard",
+                        "footsteps",
+                        "door",
+                        "opened",
+                        "harry",
+                        "harry",
+                        "face",
+                        "face",
+                        "professor",
+                        "mcgonagall"
+                    ]
+                ]
+            ],
+            [
+                "knocked",
+                [
+                    [
+                        "harry",
+                        "knocked"
+                    ]
+                ]
+            ]
+        ]
+    }
+}
