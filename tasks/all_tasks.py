@@ -2,12 +2,14 @@ import json
 
 from tasks.name_counter import NameCounter
 from tasks.preprocess import Preprocessor
+from tasks.search_sequence import SearchSequence
 from tasks.words_sequences import SequenceFinder
 
 tasks_mapping = {
     "1": lambda args: task_1(args),
     "2": lambda args: task_2(args),
-    "3": lambda args: task_3(args)
+    "3": lambda args: task_3(args),
+    "4": lambda args: task_4(args)
 }
 
 
@@ -29,5 +31,12 @@ def task_2(args):
 
 def task_3(args):
     return NameCounter(
-        data = Preprocessor(args.sentences, args.names, args.removewords).to_json()
+        data=Preprocessor(args.sentences, args.names, args.removewords).to_json()
+    )
+
+
+def task_4(args):
+    return SearchSequence(
+        data=Preprocessor(args.sentences, args.names, args.removewords).to_json(),
+        path_to_sequences=args.qsek_query_path
     )

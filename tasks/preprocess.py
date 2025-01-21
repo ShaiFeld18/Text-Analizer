@@ -9,14 +9,14 @@ PROCESSED_DATA_TYPE = dict[str, dict[str, list[list[str]] or list[list[list[str]
 class Preprocessor:
     def __init__(self,
                  sentences_path: str,
-                 peoples_path: str,
+                 peoples_path: str or None,
                  remove_words_path: str = None
                  ):
         self.sentences: pd.DataFrame = pd.read_csv(sentences_path)
-        self.names: pd.DataFrame = pd.read_csv(peoples_path)
+        self.names: pd.DataFrame = pd.read_csv(peoples_path) if peoples_path else None
         self.remove_words: list[str] = list(pd.read_csv(remove_words_path).iloc[:, 0]) if remove_words_path else []
         self.processed_sentences = self._process_sentences()
-        self.processed_names = self._process_names()
+        self.processed_names = self._process_names() if self.names is not None else None
 
     def __str__(self):
         print(self.to_json())

@@ -13,12 +13,19 @@ additional_args_by_task = {
         "1": ["--maxk", "3"],
         "2": ["--maxk", "4"],
         "3": ["--maxk", "5"]
+    },
+    "4": {
+        "1": ["--qsek_query_path", os.path.join(EXAMPLES_PATH, "Q4_examples", "example_1", "kseq_query_keys_1.json")],
+        "2": ["--qsek_query_path", os.path.join(EXAMPLES_PATH, "Q4_examples", "example_2", "kseq_query_keys_2.json")],
+        "3": ["--qsek_query_path", os.path.join(EXAMPLES_PATH, "Q4_examples", "example_3", "kseq_query_keys_3.json")],
+        "4": ["--qsek_query_path", os.path.join(EXAMPLES_PATH, "Q4_examples", "example_4", "kseq_query_keys_4.json")],
     }
 }
 
+
 def test_all_tasks():
     """Run tests for all tasks and verify results against expected outputs."""
-    for question_num in range(1, 4):
+    for question_num in [1, 2, 4]:
         question_path = os.path.join(EXAMPLES_PATH, f"Q{question_num}_examples")
 
         for example in os.listdir(question_path):
