@@ -5,6 +5,7 @@ import pandas as pd
 
 PROCESSED_DATA_TYPE = dict[str, list[list[str]] or list[list[list[str]]]]
 
+
 class Preprocessor:
     def __init__(self,
                  sentences_path: str,
@@ -18,6 +19,9 @@ class Preprocessor:
         self.processed_names: list[list[list[str]]] = []
         self._process_sentences()
         self._process_names()
+
+    def __str__(self):
+        print(self.to_json())
 
     def _process_text(self, sentence: str) -> list[str] or None:
         """

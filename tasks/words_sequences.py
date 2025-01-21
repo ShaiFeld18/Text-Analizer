@@ -1,7 +1,8 @@
-import os
 from collections import Counter
 
-from tasks.preprocess import PROCESSED_DATA_TYPE, Preprocessor
+from tasks.preprocess import PROCESSED_DATA_TYPE
+
+Sequence_Finder_TYPE = dict[str, dict[str, list[str or int]]]
 
 
 class SequenceFinder:
@@ -12,6 +13,9 @@ class SequenceFinder:
         self.n = n
         self.sequences = []
         self._count_sequences()
+
+    def __str__(self):
+        print(self.to_json())
 
     def _count_sequences_by_len(self,
                                 seq_len: int) -> list[list[str or int]]:
@@ -26,7 +30,7 @@ class SequenceFinder:
         self.sequences = [[f"{sequence_len}_seq", self._count_sequences_by_len(sequence_len)]
                           for sequence_len in range(1, self.n + 1)]
 
-    def to_json(self):
+    def to_json(self) -> Sequence_Finder_TYPE:
         return {
             "Question 2": {
                 f"{self.n}-Seq Counts": self.sequences
