@@ -8,9 +8,9 @@ Sequence_Finder_TYPE = dict[str, dict[str, list[str or int]]]
 class SequenceFinder:
     def __init__(self,
                  data: PROCESSED_DATA_TYPE,
-                 n: int):
+                 max_k: int):
         self.data = data
-        self.n = n
+        self.n = max_k
         self.sequences = []
         self._count_sequences()
 
@@ -20,7 +20,7 @@ class SequenceFinder:
     def _count_sequences_by_len(self,
                                 seq_len: int) -> list[list[str or int]]:
         sequences = []
-        for sentence in self.data.processed_sentences:
+        for sentence in self.data["Question 1"]["Processed Sentences"]:
             sequences += [' '.join(sentence[i:i + seq_len]) for i in range(0, len(sentence) - seq_len + 1)]
         sequences = [[seq, cnt] for seq, cnt in Counter(sequences).items()]
         sequences.sort(key=lambda x: x[0])

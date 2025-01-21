@@ -3,7 +3,7 @@ from copy import deepcopy
 
 import pandas as pd
 
-PROCESSED_DATA_TYPE = dict[str, list[list[str]] or list[list[list[str]]]]
+PROCESSED_DATA_TYPE = dict[str, dict[str, list[list[str]] or list[list[list[str]]]]]
 
 
 class Preprocessor:
