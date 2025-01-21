@@ -20,36 +20,33 @@ class Preprocessor:
         self._process_sentences()
         self._process_names()
 
-    def _common_process(self, col: pd.Series) -> pd.Series:
+    def _process_text(self, sentence: str) -> list[str] or None:
         """
         Makes basic preprocessing to sentences or word that includes:
             1) lowercase all text
             2) replace punctuation with single space
             3) remove words in remove_file
             4) remove double spaces and spaces in the beginning or end of sentences
-        :param col: a series representing sentences or words
-        :return: series after preprocessing
+            5) converts them to a list of words
+        :param sentence: string with a sentence or name
+        :return: list of words after preprocessing
         """
-        processed_col = col.fillna("")
-        processed_col = processed_col.apply(str.lower)  # lowercase
-        processed_col = processed_col.apply(  # replace punctuation with single space
-            lambda s: ''.join([char if char not in string.punctuation else ' ' for char in s])
-        )
-        processed_col = processed_col.apply(  # remove words in remove_file
-            lambda s: ' '.join([word for word in s.split() if word not in self.remove_words])
-        )
-        processed_col = processed_col.apply(lambda s: ' '.join(s.split()))  # remove spaces
-        return processed_col
+        sentence = sentence.lower()
+        sentence = ''.join([char if char not in string.punctuation else ' ' for char in sentence])
+        sentence = ' '.join([word for word in sentence.split() if word not in self.remove_words])
+        sentence.replace(' ', '')
+        return sentence.split()
 
     def _process_sentences(self):
         """
-        preprocess using the basic preprocessing and parses as follows:
+        preprocess each words using the basic preprocessing and parses as follows:
             1. Parsing the data as a list of sentences.
             2. Each sentence represented as a list of words.
         """
         sentences = deepcopy(self.sentences)
-        sentences = sentences.apply(self._common_process)
-        sentences = sentences.iloc[:, 0].apply(str.split)  # make each sentence a list
+        sentences = sentences[sentences.columns[0]]
+        sentences.fillna('', inplace=True)
+        sentences = sentences.apply(self._process_text)
         self.processed_sentences = sentences.to_list()  # convert DataFrame to list
 
     def _process_names(self):
@@ -62,11 +59,17 @@ class Preprocessor:
         it also ensures that no duplicate names are present.
         """
         names = deepcopy(self.names)
-        names = names.apply(self._common_process, axis=1)
-        names.drop_duplicates(subset=names.columns[0], keep="first", inplace=True)
-        names[names.columns[0]] = names[names.columns[0]].apply(str.split)
+        names.fillna('', inplace=True)
+        name_col, additional_col = names.columns[0], names.columns[1]
+        names[name_col] = names[name_col].apply(self._process_text)
+        names['full_name'] = names[name_col].apply(lambda x: ' '.join(x))
+        names.drop_duplicates(subset='full_name', keep="first", inplace=True)
+        names.drop('full_name', axis=1, inplace=True)
+        names[additional_col] = names[additional_col].apply(
+            lambda x: [self._process_text(name) for name in x.split(',')]
+        )
+        names[additional_col] = names[additional_col].apply(lambda x: x if len(x[0]) > 0 else [])
         names = names.values.tolist()
-        #TODO: fix additional names parsing
         self.processed_names = names
 
     def to_json(self) -> dict[str, list[list[str]] or list[list[list[str]]]]:
