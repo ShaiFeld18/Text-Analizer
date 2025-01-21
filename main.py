@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 
 import argparse
-import json
-
-from logics.preprocess import Preprocessor
 
 
 def read_args(args=None):
