@@ -6,12 +6,10 @@ import pandas as pd
 
 class Preprocessor:
     def __init__(self,
-                 question_number: int,
                  sentences_path: str,
                  peoples_path: str,
                  remove_words_path: str = None
                  ):
-        self.question_number = question_number
         self.sentences: pd.DataFrame = pd.read_csv(sentences_path)
         self.names: pd.DataFrame = pd.read_csv(peoples_path)
         self.remove_words: list[str] = list(pd.read_csv(remove_words_path).iloc[:, 0]) if remove_words_path else []
@@ -74,7 +72,7 @@ class Preprocessor:
 
     def to_json(self) -> dict[str, list[list[str]] or list[list[list[str]]]]:
         return {
-            f"Question {self.question_number}": {
+            "Question 1": {
                 "Processed Sentences": self.processed_sentences,
                 "Processed Names": self.processed_names
             }
