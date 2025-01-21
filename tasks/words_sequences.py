@@ -11,8 +11,7 @@ class SequenceFinder:
                  max_k: int):
         self.data = data
         self.n = max_k
-        self.sequences = []
-        self._count_sequences()
+        self.sequences = self._count_sequences()
 
     def __str__(self):
         print(self.to_json())
@@ -26,9 +25,9 @@ class SequenceFinder:
         sequences.sort(key=lambda x: x[0])
         return sequences
 
-    def _count_sequences(self):
-        self.sequences = [[f"{sequence_len}_seq", self._count_sequences_by_len(sequence_len)]
-                          for sequence_len in range(1, self.n + 1)]
+    def _count_sequences(self) -> list[list[str or int]]:
+        return [[f"{sequence_len}_seq", self._count_sequences_by_len(sequence_len)]
+                for sequence_len in range(1, self.n + 1)]
 
     def to_json(self) -> Sequence_Finder_TYPE:
         return {

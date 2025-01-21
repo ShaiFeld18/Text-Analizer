@@ -15,10 +15,8 @@ class Preprocessor:
         self.sentences: pd.DataFrame = pd.read_csv(sentences_path)
         self.names: pd.DataFrame = pd.read_csv(peoples_path)
         self.remove_words: list[str] = list(pd.read_csv(remove_words_path).iloc[:, 0]) if remove_words_path else []
-        self.processed_sentences: list[list[str]] = []
-        self.processed_names: list[list[list[str]]] = []
-        self._process_sentences()
-        self._process_names()
+        self.processed_sentences = self._process_sentences()
+        self.processed_names = self._process_names()
 
     def __str__(self):
         print(self.to_json())
@@ -39,7 +37,7 @@ class Preprocessor:
         sentence = ' '.join([word for word in sentence.split() if word not in self.remove_words])
         return sentence.split()
 
-    def _process_sentences(self):
+    def _process_sentences(self) -> list[list[str]]:
         """
         preprocess each words using the basic preprocessing and parses as follows:
             1. Parsing the data as a list of sentences.
@@ -50,9 +48,9 @@ class Preprocessor:
         sentences.fillna('', inplace=True)
         sentences = sentences.apply(self._process_text)
         sentences = sentences[sentences.apply(lambda x: x != [])]
-        self.processed_sentences = sentences.to_list()  # convert DataFrame to list
+        return sentences.to_list()
 
-    def _process_names(self):
+    def _process_names(self) -> list[list[list[str]]]:
         """
         preprocess using the basic preprocessing and parses as follows:
             1. Parsing the data as a list of names.
@@ -73,7 +71,7 @@ class Preprocessor:
         )
         names[additional_col] = names[additional_col].apply(lambda x: x if len(x[0]) > 0 else [])
         names = names.values.tolist()
-        self.processed_names = names
+        return names
 
     def to_json(self) -> PROCESSED_DATA_TYPE:
         return {

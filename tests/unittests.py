@@ -18,7 +18,7 @@ additional_args_by_task = {
 
 def test_all_tasks():
     """Run tests for all tasks and verify results against expected outputs."""
-    for question_num in range(1, 3):
+    for question_num in range(1, 4):
         question_path = os.path.join(EXAMPLES_PATH, f"Q{question_num}_examples")
 
         for example in os.listdir(question_path):
@@ -37,7 +37,7 @@ def test_all_tasks():
 
             # Parse arguments and run the task
             args = read_args(args)
-            results = tasks_mapping[args.task](args)
+            results = tasks_mapping[args.task](args).to_json()
 
             # Load expected solution and compare
             solution_path = os.path.join(question_path, example, f"Q{question_num}_result{example_num}.json")
