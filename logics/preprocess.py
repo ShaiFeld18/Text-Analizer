@@ -34,7 +34,6 @@ class Preprocessor:
         sentence = sentence.lower()
         sentence = ''.join([char if char not in string.punctuation else ' ' for char in sentence])
         sentence = ' '.join([word for word in sentence.split() if word not in self.remove_words])
-        sentence.replace(' ', '')
         return sentence.split()
 
     def _process_sentences(self):
@@ -47,6 +46,7 @@ class Preprocessor:
         sentences = sentences[sentences.columns[0]]
         sentences.fillna('', inplace=True)
         sentences = sentences.apply(self._process_text)
+        sentences = sentences[sentences.apply(lambda x: x != [])]
         self.processed_sentences = sentences.to_list()  # convert DataFrame to list
 
     def _process_names(self):
