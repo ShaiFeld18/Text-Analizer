@@ -3,6 +3,7 @@ from copy import deepcopy
 
 import pandas as pd
 
+PROCESSED_DATA_TYPE = dict[str, list[list[str]] or list[list[list[str]]]]
 
 class Preprocessor:
     def __init__(self,
@@ -70,7 +71,7 @@ class Preprocessor:
         names = names.values.tolist()
         self.processed_names = names
 
-    def to_json(self) -> dict[str, list[list[str]] or list[list[list[str]]]]:
+    def to_json(self) -> PROCESSED_DATA_TYPE:
         return {
             "Question 1": {
                 "Processed Sentences": self.processed_sentences,

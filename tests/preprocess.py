@@ -9,7 +9,7 @@ EXAMPLES_PATH = os.path.join('..', 'examples')
 REMOVE_WORDS_PATH = os.path.join('..', 'data', 'REMOVEWORDS.csv')
 
 
-def test_question1():
+def test_question2():
     question_path = os.path.join(EXAMPLES_PATH, f"Q1_examples")
     for example in os.listdir(question_path):
         example_num = example[-1]
