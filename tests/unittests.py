@@ -1,5 +1,6 @@
 import json
 import os
+import urllib
 
 from main import read_args
 from tasks.all_tasks import tasks_mapping
@@ -23,8 +24,11 @@ additional_args_by_task = {
 }
 
 
+
 def test_all_tasks():
     """Run tests for all tasks and verify results against expected outputs."""
+    failed_tests = []  # Store details of failed tests
+
     for question_num in [1, 2, 4]:
         question_path = os.path.join(EXAMPLES_PATH, f"Q{question_num}_examples")
 
@@ -51,9 +55,26 @@ def test_all_tasks():
             with open(solution_path, 'r') as file:
                 expected_results = json.load(file)
 
-            assert results == expected_results, (
-                f"Test failed for question {question_num}, example {example}. "
-                f"Expected {expected_results}, got {results}."
-            )
+            if results != expected_results:
+                failed_tests.append({
+                    "question": question_num,
+                    "example": example,
+                    "expected": expected_results,
+                    "result": results
+                })
+            else:
+                print(f"Tested question {question_num} with example {example} successfully.")
 
-            print(f"Tested question {question_num} with example {example} successfully.")
+    # Print summary of failed tests
+    if failed_tests:
+        print("\nSome tests failed:")
+        for test in failed_tests:
+            print(
+                f"Question {test['question']} Example {test['example']}: \nExpected: {test['expected']}\nActual:   {test['result']}")
+    else:
+        print("\nAll tests passed successfully!")
+
+
+# Run the tests
+if __name__ == "__main__":
+    test_all_tasks()

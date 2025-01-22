@@ -1,7 +1,7 @@
 import json
-import string
 
 from tasks.preprocess import PROCESSED_DATA_TYPE
+from tasks.utils import process_word, read_words_to_remove_file
 
 
 def _read_sequences_file(path: str) -> list[str]:
@@ -13,9 +13,11 @@ def _read_sequences_file(path: str) -> list[str]:
 class SearchSequence:
     def __init__(self,
                  data: PROCESSED_DATA_TYPE,
-                 path_to_sequences: str):
+                 path_to_sequences: str,
+                 path_to_remove_words: str):
         self.sentences = data["Question 1"]["Processed Sentences"]
         self.sequences = _read_sequences_file(path_to_sequences)
+        self.remove_words = read_words_to_remove_file(path_to_remove_words)
         self.counter = self._count_sequences()
 
     def __str__(self):
@@ -42,13 +44,12 @@ class SearchSequence:
                    for seq, sentences in mapping.items() if seq != ''}
 
         counter = []
-        for seq in self.sequences:
-            seq = ' '.join(seq)
-            seq = seq.lower()
-            seq = ''.join([char if char not in string.punctuation else ' ' for char in seq])
-            seq = ' '.join(seq.split())
-            if mapping.get(seq):
+        sequences_to_check = [process_word(' '.join(seq), self.remove_words) for seq in self.sequences]
+        sequences_in_counter = []
+        for seq in sequences_to_check:
+            if seq not in sequences_in_counter and mapping.get(seq):
                 counter.append([seq, mapping.get(seq)])
+                sequences_in_counter.append(seq)
         counter.sort(key=lambda x: x[0])
         return counter
 

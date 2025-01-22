@@ -38,5 +38,6 @@ def task_3(args):
 def task_4(args):
     return SearchSequence(
         data=Preprocessor(args.sentences, args.names, args.removewords).to_json(),
-        path_to_sequences=args.qsek_query_path
+        path_to_sequences=args.qsek_query_path,
+        path_to_remove_words=args.removewords
     )
