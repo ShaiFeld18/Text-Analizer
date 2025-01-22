@@ -1,32 +1,22 @@
-import json
-
-from tasks.preprocess import PROCESSED_DATA_TYPE
-from tasks.utils import process_word, read_words_to_remove_file
-
-
-def _read_sequences_file(path: str) -> list[str]:
-    with open(path, 'r') as file:
-        sequences = json.load(file)["keys"]
-    return sequences
+from tasks.utils import process_word
 
 
 class SearchSequence:
     def __init__(self,
-                 data: PROCESSED_DATA_TYPE,
-                 path_to_sequences: str,
-                 path_to_remove_words: str):
-        self.sentences = data["Question 1"]["Processed Sentences"]
-        self.sequences = _read_sequences_file(path_to_sequences)
-        self.remove_words = read_words_to_remove_file(path_to_remove_words)
-        self.counter = self._count_sequences()
+                 sentences: list[str],
+                 sequences: list[str],
+                 remove_words: list[str]):
+        self.sentences = sentences
+        self.sequences = sequences
+        self.remove_words = remove_words
 
     def __str__(self):
         return self.to_json()
 
-    def _count_sequences(self) -> list[str or list[list[str]]]:
+    def find_sequences(self) -> list[str or list[list[str]]]:
         """
         Finds in which sentence each sequence appeared.
-        :return: dict mapping sequence to a list of sentences it appeared in
+        :return: list mapping sequence to a list of sentences it appeared in
         """
         sequence_lens = set([len(sequence) for sequence in self.sequences])
         mapping = {}
@@ -56,6 +46,6 @@ class SearchSequence:
     def to_json(self):
         return {
             "Question 4": {
-                "K-Seq Matches": self.counter
+                "K-Seq Matches": self.find_sequences()
             }
         }

@@ -1,6 +1,5 @@
 import json
 import os
-import urllib
 
 from main import read_args
 from tasks.all_tasks import tasks_mapping
@@ -20,16 +19,21 @@ additional_args_by_task = {
         "2": ["--qsek_query_path", os.path.join(EXAMPLES_PATH, "Q4_examples", "example_2", "kseq_query_keys_2.json")],
         "3": ["--qsek_query_path", os.path.join(EXAMPLES_PATH, "Q4_examples", "example_3", "kseq_query_keys_3.json")],
         "4": ["--qsek_query_path", os.path.join(EXAMPLES_PATH, "Q4_examples", "example_4", "kseq_query_keys_4.json")],
+    },
+    "5": {
+        "1": ["--maxk", "3"],
+        "2": ["--maxk", "4"],
+        "3": ["--maxk", "5"],
+        "4": ["--maxk", "6"]
     }
 }
-
 
 
 def test_all_tasks():
     """Run tests for all tasks and verify results against expected outputs."""
     failed_tests = []  # Store details of failed tests
 
-    for question_num in [1, 2, 4]:
+    for question_num in [1, 2, 3, 4, 5]:
         question_path = os.path.join(EXAMPLES_PATH, f"Q{question_num}_examples")
 
         for example in os.listdir(question_path):
