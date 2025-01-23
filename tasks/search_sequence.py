@@ -4,7 +4,7 @@ from tasks.utils import process_word
 class SearchSequence:
     def __init__(self,
                  sentences: list[str],
-                 sequences: list[str],
+                 sequences: list[list[str]],
                  remove_words: list[str]):
         self.sentences = sentences
         self.sequences = sequences
