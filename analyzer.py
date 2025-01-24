@@ -264,3 +264,11 @@ class TextAnalyzer:
                 if counter >= threshold:
                     connections.append(sorted([person_a.split(), person_b.split()]))
         return sorted(connections)
+
+    def indirect_connections(self,
+                             pairs_to_check: list[list[list[str]]],
+                             window_size: int,
+                             threshold: int,
+                             maximal_distance: int) -> list[list[str or bool]]:
+        for pair in pairs_to_check:
+            pass

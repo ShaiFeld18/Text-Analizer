@@ -29,7 +29,8 @@ class TaskRunner:
             "3": self._task_3,
             "4": self._task_4,
             "5": self._task_5,
-            "6": self._task_6
+            "6": self._task_6,
+            "7": self._task_7
         }
         task_num = self.args.task
         if task_num not in task_map:
@@ -69,3 +70,11 @@ class TaskRunner:
             "Pair Matches": self.analyzer.find_connections(self.args.windowsize,
                                                            self.args.threshold)
         }
+
+    def _task_7(self):
+        return self.analyzer.indirect_connections(
+            pairs_to_check=self.args.pairs,
+            window_size=self.args.windowsize,
+            threshold=self.args.threshold,
+            maximal_distance=self.args.maximal_distance
+        )

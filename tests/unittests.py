@@ -31,6 +31,16 @@ additional_args_by_task = {
         "2": ["--windowsize", "3", "--threshold", "2"],
         "3": ["--windowsize", "5", "--threshold", "2"],
         "4": ["--windowsize", "5", "--threshold", "1"]
+    },
+    "7": {
+        "1": ["--pairs",os.path.join(EXAMPLES_PATH, "Q7_examples", "exmaple_1", "people_connections_1.json"),
+              "--windowsize", "5", "--threshold", "2", "--maximal_distance", "1000"],
+        "2": ["--pairs",os.path.join(EXAMPLES_PATH, "Q7_examples", "exmaple_2", "people_connections_2.json"),
+              "--windowsize", "3", "--threshold", "2", "--maximal_distance", "1000"],
+        "3": ["--pairs",os.path.join(EXAMPLES_PATH, "Q7_examples", "exmaple_3", "people_connections_3.json"),
+              "--windowsize", "5", "--threshold", "1", "--maximal_distance", "1000"],
+        "4": ["--pairs",os.path.join(EXAMPLES_PATH, "Q7_examples", "exmaple_4", "people_connections_4.json"),
+              "--windowsize", "5", "--threshold", "2", "--maximal_distance", "1000"],
     }
 }
 
@@ -39,7 +49,7 @@ def test_all_tasks():
     """Run tests for all tasks and verify results against expected outputs."""
     failed_tests = []  # Store details of failed tests
 
-    for question_num in [1, 2, 3, 4, 5, 6]:
+    for question_num in [1, 2, 3, 4, 5, 6, 7]:
         question_path = os.path.join(EXAMPLES_PATH, f"Q{question_num}_examples")
 
         for example in os.listdir(question_path):
