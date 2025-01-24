@@ -2,7 +2,7 @@ import json
 import os
 
 from main import read_args
-from tasks.all_tasks import tasks_mapping
+from tasks.all_tasks import TaskRunner
 
 EXAMPLES_PATH = os.path.join('..', 'examples')
 REMOVE_WORDS_PATH = os.path.join('..', 'data', 'REMOVEWORDS.csv')
@@ -52,9 +52,8 @@ def test_all_tasks():
 
             # Parse arguments and run the task
             args = read_args(args)
-            results = tasks_mapping[args.task](args).to_json()
-            if question_num == 4:
-                print(results)
+            results = TaskRunner(args).run_task()
+
             # Load expected solution and compare
             solution_path = os.path.join(question_path, example, f"Q{question_num}_result{example_num}.json")
             with open(solution_path, 'r') as file:

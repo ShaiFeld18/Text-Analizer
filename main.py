@@ -2,8 +2,6 @@
 
 import argparse
 
-from tasks.all_tasks import tasks_mapping
-
 
 def read_args(args=None):
     parser = argparse.ArgumentParser(
@@ -57,8 +55,3 @@ def read_args(args=None):
                         help="json file with query path",
                         )
     return parser.parse_args(args)
-
-
-def main():
-    args = read_args()
-    print(tasks_mapping[args.task](args))
