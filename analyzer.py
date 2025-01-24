@@ -203,7 +203,8 @@ class TextAnalyzer:
             sequences: list[list[str]] = json.load(file)["keys"]
         sequences = [self._remove_unwanted_words(_process_string(' '.join(seq)).split())
                      for seq in sequences]
-        sequences = [seq for seq in sequences if len(seq) > 0]
+        drop_duplicates = set([tuple(seq) for seq in sequences if len(seq) > 0])
+        sequences = [list(seq) for seq in drop_duplicates]
         return self._search_sequences_in_text(sequences)
 
     def people_context(self, seq_len: int) -> list[list[str or list[str]]]:
