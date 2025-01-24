@@ -25,6 +25,12 @@ additional_args_by_task = {
         "2": ["--maxk", "4"],
         "3": ["--maxk", "5"],
         "4": ["--maxk", "6"]
+    },
+    "6": {
+        "1": ["--windowsize", "4", "--threshold", "4"],
+        "2": ["--windowsize", "3", "--threshold", "2"],
+        "3": ["--windowsize", "5", "--threshold", "2"],
+        "4": ["--windowsize", "5", "--threshold", "1"]
     }
 }
 
@@ -33,7 +39,7 @@ def test_all_tasks():
     """Run tests for all tasks and verify results against expected outputs."""
     failed_tests = []  # Store details of failed tests
 
-    for question_num in [1, 2, 3, 4, 5]:
+    for question_num in [1, 2, 3, 4, 5, 6]:
         question_path = os.path.join(EXAMPLES_PATH, f"Q{question_num}_examples")
 
         for example in os.listdir(question_path):
@@ -55,7 +61,8 @@ def test_all_tasks():
             results = TaskRunner(args).run_task()
 
             # Load expected solution and compare
-            solution_path = os.path.join(question_path, example, f"Q{question_num}_result{example_num}.json")
+            result_file_name = [file for file in os.listdir(os.path.join(question_path, example)) if file.startswith(f"Q{question_num}_result")][0]
+            solution_path = os.path.join(question_path, example, result_file_name)
             with open(solution_path, 'r') as file:
                 expected_results = json.load(file)
 

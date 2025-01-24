@@ -28,7 +28,8 @@ class TaskRunner:
             "2": self._task_2,
             "3": self._task_3,
             "4": self._task_4,
-            "5": self._task_5
+            "5": self._task_5,
+            "6": self._task_6
         }
         task_num = self.args.task
         if task_num not in task_map:
@@ -61,4 +62,10 @@ class TaskRunner:
     def _task_5(self):
         return {
             "Person Contexts and K-Seqs": self.analyzer.people_context(seq_len=self.args.maxk)
+        }
+
+    def _task_6(self):
+        return {
+            "Pair Matches": self.analyzer.find_connections(self.args.windowsize,
+                                                           self.args.threshold)
         }

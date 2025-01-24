@@ -207,13 +207,7 @@ class TextAnalyzer:
         sequences = [list(seq) for seq in drop_duplicates]
         return self._search_sequences_in_text(sequences)
 
-    def people_context(self, seq_len: int) -> list[list[str or list[str]]]:
-        """
-        For each person find all the sentences they appear in.
-        For each sentence, search all the k-len sequences in the sentence.
-        :param seq_len: maximum length of the sequences to find
-        :return: a list mapping a person to all the sequences in sentences they appear.
-        """
+    def _map_names_to_sentences(self) -> dict[str, list[list]]:
         names_to_sentences = {}
         for person in self.persons:
             names_to_find = list(set(person[0] + [word for nickname in person[1] for word in nickname]))
@@ -222,7 +216,16 @@ class TextAnalyzer:
             sentences_with_name = set([tuple(sentence) for sentences in sentences_with_name for sentence in sentences])
             if len(sentences_with_name) > 0:
                 names_to_sentences[' '.join(person[0])] = [list(sentence) for sentence in sentences_with_name]
+        return names_to_sentences
 
+    def people_context(self, seq_len: int) -> list[list[str or list[str]]]:
+        """
+        For each person find all the sentences they appear in.
+        For each sentence, search all the k-len sequences in the sentence.
+        :param seq_len: maximum length of the sequences to find
+        :return: a list mapping a person to all the sequences in sentences they appear.
+        """
+        names_to_sentences = self._map_names_to_sentences()
         names_to_context = dict()
         for person, sentences in names_to_sentences.items():
             seqs = []
@@ -235,3 +238,29 @@ class TextAnalyzer:
         names_to_context = [[k, v] for k, v in names_to_context.items()]
         names_to_context.sort(key=lambda x: x[0])
         return names_to_context
+
+    def _find_distance_between_sentences(self, a: list[str], b: list[str]) -> int:
+        return abs(self.sentences.index(a) - self.sentences.index(b))
+
+    def find_connections(self, window_size: int, threshold: int) -> list[list[list[str]]]:
+        """
+        Find pairs of people who appear within a specified number of sentences from each other.
+        :param window_size: Maximum sentence distance between two people.
+        :param threshold: Minimum number of times two people must appear within the window_size.
+        :return: list pairs of connected persons.
+        """
+        persons_to_sentences = self._map_names_to_sentences()
+        connections = []
+        for person_a, sentences_a in persons_to_sentences.items():
+            for person_b, sentences_b in persons_to_sentences.items():
+                if person_a == person_b or sorted([person_a.split(), person_b.split()]) in connections:
+                    continue
+                counter = 0
+                for sentence_a in sentences_a:
+                    for sentence_b in sentences_b:
+                        distance = self._find_distance_between_sentences(sentence_a, sentence_b)
+                        if distance < window_size:
+                            counter += 1
+                if counter >= threshold:
+                    connections.append(sorted([person_a.split(), person_b.split()]))
+        return sorted(connections)
