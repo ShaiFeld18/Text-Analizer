@@ -1,4 +1,5 @@
 import string
+from itertools import chain
 
 import pandas as pd
 
@@ -21,3 +22,7 @@ def process_word(text_to_process: str,
 
 def read_words_to_remove_file(path: str) -> list[str]:
     return list(pd.read_csv(path).iloc[:, 0]) if path else []
+
+
+def flatten_list(list_of_lists: list[list[any]]) -> list[any]:
+    return [item for sublist in list_of_lists for item in sublist]

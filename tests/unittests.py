@@ -53,7 +53,8 @@ def test_all_tasks():
             # Parse arguments and run the task
             args = read_args(args)
             results = tasks_mapping[args.task](args).to_json()
-
+            if question_num == 4:
+                print(results)
             # Load expected solution and compare
             solution_path = os.path.join(question_path, example, f"Q{question_num}_result{example_num}.json")
             with open(solution_path, 'r') as file:

@@ -26,6 +26,7 @@ def read_args(args=None):
     parser.add_argument('-p', '--preprocessed',
                         action='append',
                         help="json with preprocessed data",
+                        default=None
                         )
     # Task specific arguments
     parser.add_argument('--maxk',
