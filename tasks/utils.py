@@ -1,5 +1,4 @@
 import string
-from itertools import chain
 
 import pandas as pd
 
