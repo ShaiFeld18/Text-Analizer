@@ -2,7 +2,275 @@
     "Question 9": {
         "group Matches": [
             [
+                "Group 1",
+                [
+                    [
+                        "breeze",
+                        "ruffled",
+                        "neat",
+                        "hedges",
+                        "privet",
+                        "drive",
+                        "lay",
+                        "silent",
+                        "tidy",
+                        "inky",
+                        "sky",
+                        "place",
+                        "expect",
+                        "astonishing",
+                        "things"
+                    ]
+                ]
+            ],
+            [
                 "Group 2",
+                [
+                    [
+                        "dumbledore",
+                        "bundle",
+                        "blankets",
+                        "step",
+                        "number",
+                        "four"
+                    ]
+                ]
+            ],
+            [
+                "Group 3",
+                [
+                    [
+                        "dumbledore",
+                        "dumbledore",
+                        "ll",
+                        "scar",
+                        "forever",
+                        "couldn",
+                        "something",
+                        "scar",
+                        "dumbledore",
+                        "wouldn"
+                    ]
+                ]
+            ],
+            [
+                "Group 4",
+                [
+                    [
+                        "dumbledore",
+                        "turned",
+                        "dumbledore",
+                        "heel",
+                        "swish",
+                        "dumbledore",
+                        "cloak",
+                        "dumbledore"
+                    ]
+                ]
+            ],
+            [
+                "Group 5",
+                [
+                    [
+                        "dumbledore",
+                        "turned",
+                        "walked",
+                        "street"
+                    ]
+                ]
+            ],
+            [
+                "Group 6",
+                [
+                    [
+                        "good",
+                        "bye",
+                        "harry",
+                        "sir",
+                        "asked",
+                        "hagrid"
+                    ]
+                ]
+            ],
+            [
+                "Group 7",
+                [
+                    [
+                        "good",
+                        "luck",
+                        "harry",
+                        "dumbledore",
+                        "murmured"
+                    ]
+                ]
+            ],
+            [
+                "Group 8",
+                [
+                    [
+                        "harry",
+                        "bent",
+                        "harry",
+                        "great",
+                        "shaggy",
+                        "harry",
+                        "gave",
+                        "scratchy",
+                        "whiskery",
+                        "kiss"
+                    ]
+                ]
+            ],
+            [
+                "Group 9",
+                [
+                    [
+                        "left",
+                        "knee",
+                        "perfect",
+                        "map",
+                        "london",
+                        "underground"
+                    ]
+                ]
+            ],
+            [
+                "Group 10",
+                [
+                    [
+                        "photographs",
+                        "mantelpiece",
+                        "really",
+                        "showed",
+                        "passed"
+                    ]
+                ]
+            ],
+            [
+                "Group 11",
+                [
+                    [
+                        "professor",
+                        "mcgonagall",
+                        "blew",
+                        "mcgonagall",
+                        "nose",
+                        "reply"
+                    ]
+                ]
+            ],
+            [
+                "Group 12",
+                [
+                    [
+                        "room",
+                        "held",
+                        "sign",
+                        "another",
+                        "lived",
+                        "house"
+                    ]
+                ]
+            ],
+            [
+                "Group 13",
+                [
+                    [
+                        "scars",
+                        "handy"
+                    ]
+                ]
+            ],
+            [
+                "Group 14",
+                [
+                    [
+                        "suddenly",
+                        "hagrid",
+                        "howl",
+                        "like",
+                        "wounded",
+                        "dog"
+                    ]
+                ]
+            ],
+            [
+                "Group 15",
+                [
+                    [
+                        "tuft",
+                        "jet",
+                        "black",
+                        "forehead",
+                        "dumbledore",
+                        "mcgonagall",
+                        "curiously",
+                        "shaped",
+                        "cut",
+                        "like",
+                        "bolt",
+                        "lightning"
+                    ]
+                ]
+            ],
+            [
+                "Group 16",
+                [
+                    [
+                        "ve",
+                        "business",
+                        "staying"
+                    ]
+                ]
+            ],
+            [
+                "Group 17",
+                [
+                    [
+                        "well",
+                        "dumbledore",
+                        "finally"
+                    ]
+                ]
+            ],
+            [
+                "Group 18",
+                [
+                    [
+                        "corner",
+                        "dumbledore",
+                        "stopped",
+                        "took",
+                        "silver",
+                        "outer"
+                    ],
+                    [
+                        "dumbledore",
+                        "clicked",
+                        "outer",
+                        "twelve",
+                        "balls",
+                        "light",
+                        "sped",
+                        "balls",
+                        "street",
+                        "lamps",
+                        "privet",
+                        "drive",
+                        "glowed",
+                        "suddenly",
+                        "orange",
+                        "dumbledore",
+                        "tabby",
+                        "cat",
+                        "slinking",
+                        "corner",
+                        "street"
+                    ]
+                ]
+            ],
+            [
+                "Group 19",
                 [
                     [
                         "dumbledore",
@@ -21,21 +289,6 @@
                         "blankets",
                         "came"
                     ],
-                    [
-                        "harry",
-                        "potter",
-                        "rolled",
-                        "inside",
-                        "dumbledore",
-                        "blankets",
-                        "without",
-                        "waking"
-                    ]
-                ]
-            ],
-            [
-                "Group 1",
-                [
                     [
                         "full",
                         "minute",
@@ -58,6 +311,16 @@
                         "dumbledore",
                         "eyes",
                         "seemed"
+                    ],
+                    [
+                        "harry",
+                        "potter",
+                        "rolled",
+                        "inside",
+                        "dumbledore",
+                        "blankets",
+                        "without",
+                        "waking"
                     ],
                     [
                         "shall",
@@ -137,10 +400,8 @@
                         "dumbledore",
                         "woken",
                         "hours",
-                        "mrs",
                         "dursley",
                         "scream",
-                        "mrs",
                         "dursley",
                         "opened",
                         "front",
@@ -183,9 +444,7 @@
                         "brass",
                         "number",
                         "four",
-                        "mr",
                         "dursley",
-                        "mrs",
                         "dursley",
                         "dudley",
                         "dursley",
@@ -193,9 +452,7 @@
                         "door",
                         "number",
                         "crept",
-                        "mr",
                         "dursley",
-                        "mrs",
                         "dursley",
                         "dudley",
                         "dursley",
@@ -203,7 +460,6 @@
                         "room",
                         "almost",
                         "exactly",
-                        "mr",
                         "dursley",
                         "seen",
                         "fateful",
@@ -254,16 +510,12 @@
                         "years",
                         "passed",
                         "since",
-                        "mr",
                         "dursley",
-                        "mrs",
                         "dursley",
                         "dudley",
                         "dursley",
                         "woken",
-                        "mr",
                         "dursley",
-                        "mrs",
                         "dursley",
                         "dudley",
                         "dursley",
@@ -287,9 +539,7 @@
                         "arms",
                         "turned",
                         "toward",
-                        "mr",
                         "dursley",
-                        "mrs",
                         "dursley",
                         "dudley",
                         "dursley",
@@ -331,6 +581,11 @@
                         "engine",
                         "rose",
                         "air"
+                    ],
+                    [
+                        "whispered",
+                        "professor",
+                        "mcgonagall"
                     ]
                 ]
             ]

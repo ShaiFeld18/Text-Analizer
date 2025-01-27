@@ -1,10 +1,9 @@
 {
     "keys":[
-        ["Snape ..."," ++ looked"],
-        ["Harry   ","heard"],
-        [],
-        ["  Karkaroff   "],
-        ["well", "go", "join", "celebrations"],
-        ["liPs"]
+		["snape", "looked"],
+		["harry", "heard"],
+		["karkaroff"],
+		["well", "go", "join", "celebrations"],
+		["lips"]
     ]
 }

@@ -33,14 +33,22 @@ additional_args_by_task = {
         "4": ["--windowsize", "5", "--threshold", "1"]
     },
     "7": {
-        "1": ["--pairs",os.path.join(EXAMPLES_PATH, "Q7_examples", "exmaple_1", "people_connections_1.json"),
+        "1": ["--pairs",os.path.join(EXAMPLES_PATH, "Q7_examples", "example_1", "people_connections_1.json"),
               "--windowsize", "5", "--threshold", "2", "--maximal_distance", "1000"],
-        "2": ["--pairs",os.path.join(EXAMPLES_PATH, "Q7_examples", "exmaple_2", "people_connections_2.json"),
+        "2": ["--pairs",os.path.join(EXAMPLES_PATH, "Q7_examples", "example_2", "people_connections_2.json"),
               "--windowsize", "3", "--threshold", "2", "--maximal_distance", "1000"],
-        "3": ["--pairs",os.path.join(EXAMPLES_PATH, "Q7_examples", "exmaple_3", "people_connections_3.json"),
+        "3": ["--pairs",os.path.join(EXAMPLES_PATH, "Q7_examples", "example_3", "people_connections_3.json"),
               "--windowsize", "5", "--threshold", "1", "--maximal_distance", "1000"],
-        "4": ["--pairs",os.path.join(EXAMPLES_PATH, "Q7_examples", "exmaple_4", "people_connections_4.json"),
+        "4": ["--pairs",os.path.join(EXAMPLES_PATH, "Q7_examples", "example_4", "people_connections_4.json"),
               "--windowsize", "5", "--threshold", "2", "--maximal_distance", "1000"],
+    },
+    "8": {
+        "1": ["--pairs", os.path.join(EXAMPLES_PATH, "Q8_examples", "example_1", "people_connections_1.json"),
+              "--windowsize", "5", "--threshold", "2", "--fixed_length",  "2"],
+        "2": ["--pairs", os.path.join(EXAMPLES_PATH, "Q8_examples", "example_2", "people_connections_2.json"),
+              "--windowsize", "3", "--threshold", "2", "--fixed_length", "3"],
+        "3": ["--pairs", os.path.join(EXAMPLES_PATH, "Q8_examples", "example_3", "people_connections_3.json"),
+              "--windowsize", "5", "--threshold", "1", "--fixed_length", "8"]
     }
 }
 
@@ -49,7 +57,7 @@ def test_all_tasks():
     """Run tests for all tasks and verify results against expected outputs."""
     failed_tests = []  # Store details of failed tests
 
-    for question_num in [1, 2, 3, 4, 5, 6, 7]:
+    for question_num in [1, 2, 3, 4, 5, 6, 7, 8]:
         question_path = os.path.join(EXAMPLES_PATH, f"Q{question_num}_examples")
 
         for example in os.listdir(question_path):

@@ -3,13 +3,17 @@ import json
 from analyzer import TextAnalyzer
 
 
+def _open_file(path: str) -> dict:
+    with open(path, 'r') as file:
+        return json.load(file)
+
+
 def _start_analyzer(args) -> TextAnalyzer:
     if args.preprocessed is not None:
-        with open(args.preprocessed, 'r') as file:
-            data = json.load(file)
-            analyzer = TextAnalyzer(sentences=data["Question 1"]["Processed Sentences"],
-                                    persons=data["Question 1"]["Processed Names"],
-                                    path_to_unwanted_words=args.removewords)
+        data = _open_file(args.preprocessed)
+        analyzer = TextAnalyzer(sentences=data["Question 1"]["Processed Sentences"],
+                                persons=data["Question 1"]["Processed Names"],
+                                path_to_unwanted_words=args.removewords)
     else:
         analyzer = TextAnalyzer(path_to_sentences=args.sentences,
                                 path_to_persons=args.names,
@@ -30,7 +34,8 @@ class TaskRunner:
             "4": self._task_4,
             "5": self._task_5,
             "6": self._task_6,
-            "7": self._task_7
+            "7": self._task_7,
+            "8": self._task_8
         }
         task_num = self.args.task
         if task_num not in task_map:
@@ -72,9 +77,22 @@ class TaskRunner:
         }
 
     def _task_7(self):
-        return self.analyzer.indirect_connections(
-            pairs_to_check=self.args.pairs,
+        pairs_raw = [sorted(pair) for pair in _open_file(self.args.pairs)["keys"]]
+        found_paths = self.analyzer.indirect_connections(
+            pairs_to_check=pairs_raw,
             window_size=self.args.windowsize,
             threshold=self.args.threshold,
             maximal_distance=self.args.maximal_distance
         )
+        return {"Pair Matches": found_paths}
+
+    def _task_8(self):
+        pairs_raw = [sorted(pair) for pair in _open_file(self.args.pairs)["keys"]]
+        found_paths = self.analyzer.fixed_length_paths(
+            pairs_to_check=pairs_raw,
+            window_size=self.args.windowsize,
+            threshold=self.args.threshold,
+            maximal_distance=self.args.fixed_length,
+            k=self.args.fixed_length
+        )
+        return {"Pair Matches": found_paths}

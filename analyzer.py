@@ -1,6 +1,7 @@
 import json
 import re
 import string
+from collections import defaultdict, deque
 
 import pandas as pd
 
@@ -29,6 +30,33 @@ def _process_unwanted_words(path_to_unwanted_words: str or None) -> list[str]:
 
 def _get_sequences_from_sentence(sentence: list[str], seq_len: int) -> list[str]:
     return [' '.join(sentence[i:i + seq_len]) for i in range(len(sentence) - seq_len + 1)]
+
+
+def find_all_paths(graph, start, end, max_len):
+    def dfs(current, path):
+        # If path length exceeds max_len, stop exploring
+        if len(path) > max_len:
+            return []
+
+        # If reached the end, return the path
+        if current == end:
+            return [path]
+
+        paths = []
+        # Explore neighbors
+        for edge in graph:
+            # Check both directions of the edge
+            if (edge[0] == current and edge[1] not in path) or \
+                    (edge[1] == current and edge[0] not in path):
+                # Determine the next node
+                next_node = edge[1] if edge[0] == current else edge[0]
+                new_paths = dfs(next_node, path + [next_node])
+                paths.extend(new_paths)
+
+        return paths
+
+    # Start the search from the start node
+    return dfs(start, [start])
 
 
 class TextAnalyzer:
@@ -210,8 +238,8 @@ class TextAnalyzer:
     def _map_names_to_sentences(self) -> dict[str, list[list]]:
         names_to_sentences = {}
         for person in self.persons:
-            names_to_find = list(set(person[0] + [word for nickname in person[1] for word in nickname]))
-            sentences_with_name = self._search_sequences_in_text([n.split() for n in names_to_find])
+            names_to_find = [[name] for name in person[0]] + [[" ".join(person[0])]] + person[1]
+            sentences_with_name = self._search_sequences_in_text(names_to_find)
             sentences_with_name = [sentences[1] for sentences in sentences_with_name]
             sentences_with_name = set([tuple(sentence) for sentences in sentences_with_name for sentence in sentences])
             if len(sentences_with_name) > 0:
@@ -265,10 +293,66 @@ class TextAnalyzer:
                     connections.append(sorted([person_a.split(), person_b.split()]))
         return sorted(connections)
 
+    def names_to_person(self, names: list[str]) -> str:
+        """
+        Search names in self.persons and return the main name as string.
+        :param names: list of names to search
+        :return: main names of persons
+        """
+        actual_persons = []
+        for name in names:
+            for person in self.persons:
+                if name in [person[0]] + [nickname for nickname in person[1]]:
+                    actual_persons.append(' '.join(person[0]))
+        return ' '.join(actual_persons)
+
+    def _all_indirect_connections(self,
+                                  pairs_to_check: list[list[str]],
+                                  window_size: int,
+                                  threshold: int,
+                                  maximal_distance: int) -> dict[tuple[str, str], list[str]]:
+        graph = self.find_connections(window_size, threshold)
+        for pair in graph:
+            pair[0], pair[1] = ' '.join(pair[0]), ' '.join(pair[1])
+        results = {}
+        for start, end in pairs_to_check:
+            if start == '' or end == '':
+                results[(start, end)] = []
+                continue
+            results[(start, end)] = find_all_paths(
+                graph,
+                start,
+                end,
+                maximal_distance)
+        return results
+
     def indirect_connections(self,
-                             pairs_to_check: list[list[list[str]]],
+                             pairs_to_check: list[list[str]],
                              window_size: int,
                              threshold: int,
                              maximal_distance: int) -> list[list[str or bool]]:
+        res = self._all_indirect_connections(pairs_to_check, window_size, threshold, maximal_distance)
         for pair in pairs_to_check:
-            pass
+            if len(res.get(tuple(pair), [])) > 0:
+                pair.append(True)
+            else:
+                pair.append(False)
+        res = sorted(pairs_to_check, key=lambda x: x[0])
+        return res
+
+    def fixed_length_paths(self,
+                           pairs_to_check: list[list[str]],
+                           window_size: int,
+                           threshold: int,
+                           maximal_distance: int,
+                           k: int) -> list[list[str or bool]]:
+        res = self._all_indirect_connections(pairs_to_check, window_size, threshold, maximal_distance)
+        for pair in pairs_to_check:
+            for path in res[tuple(pair)]:
+                if len(pair) > 2:
+                    continue
+                if len(path) >= k:
+                    pair.append(True)
+            if len(pair) == 2:
+                pair.append(False)
+        return pairs_to_check

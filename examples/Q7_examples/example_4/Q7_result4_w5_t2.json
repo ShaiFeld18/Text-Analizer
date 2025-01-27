@@ -1,0 +1,46 @@
+{
+    "Question 7": {
+        "Pair Matches": [
+            [
+                "aurelius dumbledore",
+                "harry potter",
+                false
+            ],
+            [
+                "draco malfoy",
+                "hermione granger",
+                false
+            ],
+            [
+                "gwenog jones",
+                "harold skively",
+                false
+            ],
+            [
+                "harry potter",
+                "hermione granger",
+                true
+            ],
+            [
+                "hassan mostafa",
+                "malcolm baddock",
+                false
+            ],
+            [
+                "hedwig",
+                "vernon dudley",
+                true
+            ],
+            [
+                "hermione granger",
+                "isobel mcgonagall",
+                true
+            ],
+            [
+                "isobel mcgonagall",
+                "vernon dudley",
+                true
+            ]
+        ]
+    }
+}

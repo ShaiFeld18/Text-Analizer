@@ -1,10 +1,9 @@
 {
     "keys":[
-        ["another ..."," ++ day"],
-        ["Harry   ","heard"],
-        [],
-        ["  anOtHer +-.. ,  "],
-        ["well", "go", "join", "celebrations"],
-        ["knocked"]
+		["another"],
+		["harry", "heard"],
+		["another"],
+		["well", "go", "join", "celebrations"],
+		["knocked"]
     ]
 }

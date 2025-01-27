@@ -6983,18 +6983,6 @@
                 "harry potter",
                 [
                     [
-                        "almost"
-                    ],
-                    [
-                        "almost",
-                        "exactly"
-                    ],
-                    [
-                        "almost",
-                        "exactly",
-                        "dursley"
-                    ],
-                    [
                         "another"
                     ],
                     [
@@ -7082,15 +7070,6 @@
                     ],
                     [
                         "blankets",
-                        "step"
-                    ],
-                    [
-                        "blankets",
-                        "step",
-                        "number"
-                    ],
-                    [
-                        "blankets",
                         "without"
                     ],
                     [
@@ -7109,30 +7088,6 @@
                         "bottles",
                         "dumbledore",
                         "spend"
-                    ],
-                    [
-                        "brass"
-                    ],
-                    [
-                        "brass",
-                        "number"
-                    ],
-                    [
-                        "brass",
-                        "number",
-                        "four"
-                    ],
-                    [
-                        "bundle"
-                    ],
-                    [
-                        "bundle",
-                        "blankets"
-                    ],
-                    [
-                        "bundle",
-                        "blankets",
-                        "step"
                     ],
                     [
                         "burying"
@@ -7222,18 +7177,6 @@
                         "dumbledore"
                     ],
                     [
-                        "crept"
-                    ],
-                    [
-                        "crept",
-                        "dursley"
-                    ],
-                    [
-                        "crept",
-                        "dursley",
-                        "dursley"
-                    ],
-                    [
                         "dead"
                     ],
                     [
@@ -7256,15 +7199,6 @@
                         "door",
                         "milk",
                         "bottles"
-                    ],
-                    [
-                        "door",
-                        "number"
-                    ],
-                    [
-                        "door",
-                        "number",
-                        "crept"
                     ],
                     [
                         "doorstep"
@@ -7297,17 +7231,7 @@
                     [
                         "dudley",
                         "dursley",
-                        "front"
-                    ],
-                    [
-                        "dudley",
-                        "dursley",
                         "house"
-                    ],
-                    [
-                        "dudley",
-                        "dursley",
-                        "living"
                     ],
                     [
                         "dumbledore"
@@ -7320,15 +7244,6 @@
                         "dumbledore",
                         "blankets",
                         "without"
-                    ],
-                    [
-                        "dumbledore",
-                        "bundle"
-                    ],
-                    [
-                        "dumbledore",
-                        "bundle",
-                        "blankets"
                     ],
                     [
                         "dumbledore",
@@ -7474,25 +7389,7 @@
                     ],
                     [
                         "dursley",
-                        "front"
-                    ],
-                    [
-                        "dursley",
-                        "front",
-                        "door"
-                    ],
-                    [
-                        "dursley",
                         "house"
-                    ],
-                    [
-                        "dursley",
-                        "living"
-                    ],
-                    [
-                        "dursley",
-                        "living",
-                        "room"
                     ],
                     [
                         "dursley",
@@ -7511,27 +7408,6 @@
                         "dursley",
                         "scream",
                         "dursley"
-                    ],
-                    [
-                        "dursley",
-                        "seen"
-                    ],
-                    [
-                        "dursley",
-                        "seen",
-                        "fateful"
-                    ],
-                    [
-                        "exactly"
-                    ],
-                    [
-                        "exactly",
-                        "dursley"
-                    ],
-                    [
-                        "exactly",
-                        "dursley",
-                        "seen"
                     ],
                     [
                         "face"
@@ -7558,30 +7434,6 @@
                         "dumbledore"
                     ],
                     [
-                        "fateful"
-                    ],
-                    [
-                        "fateful",
-                        "news"
-                    ],
-                    [
-                        "fateful",
-                        "news",
-                        "report"
-                    ],
-                    [
-                        "four"
-                    ],
-                    [
-                        "four",
-                        "dursley"
-                    ],
-                    [
-                        "four",
-                        "dursley",
-                        "dursley"
-                    ],
-                    [
                         "front"
                     ],
                     [
@@ -7594,20 +7446,6 @@
                         "milk"
                     ],
                     [
-                        "front",
-                        "door",
-                        "number"
-                    ],
-                    [
-                        "front",
-                        "gardens"
-                    ],
-                    [
-                        "front",
-                        "gardens",
-                        "lit"
-                    ],
-                    [
                         "garden"
                     ],
                     [
@@ -7618,18 +7456,6 @@
                         "garden",
                         "wall",
                         "walked"
-                    ],
-                    [
-                        "gardens"
-                    ],
-                    [
-                        "gardens",
-                        "lit"
-                    ],
-                    [
-                        "gardens",
-                        "lit",
-                        "brass"
                     ],
                     [
                         "gave"
@@ -8118,18 +7944,6 @@
                         "dead"
                     ],
                     [
-                        "lit"
-                    ],
-                    [
-                        "lit",
-                        "brass"
-                    ],
-                    [
-                        "lit",
-                        "brass",
-                        "number"
-                    ],
-                    [
                         "little"
                     ],
                     [
@@ -8147,18 +7961,6 @@
                     [
                         "lived",
                         "house"
-                    ],
-                    [
-                        "living"
-                    ],
-                    [
-                        "living",
-                        "room"
-                    ],
-                    [
-                        "living",
-                        "room",
-                        "almost"
                     ],
                     [
                         "ll"
@@ -8287,18 +8089,6 @@
                         "murmured"
                     ],
                     [
-                        "news"
-                    ],
-                    [
-                        "news",
-                        "report"
-                    ],
-                    [
-                        "news",
-                        "report",
-                        "owls"
-                    ],
-                    [
                         "next"
                     ],
                     [
@@ -8311,27 +8101,6 @@
                         "prodded"
                     ],
                     [
-                        "number"
-                    ],
-                    [
-                        "number",
-                        "crept"
-                    ],
-                    [
-                        "number",
-                        "crept",
-                        "dursley"
-                    ],
-                    [
-                        "number",
-                        "four"
-                    ],
-                    [
-                        "number",
-                        "four",
-                        "dursley"
-                    ],
-                    [
                         "opened"
                     ],
                     [
@@ -8342,9 +8111,6 @@
                         "opened",
                         "front",
                         "door"
-                    ],
-                    [
-                        "owls"
                     ],
                     [
                         "patting"
@@ -8449,13 +8215,6 @@
                         "whispered"
                     ],
                     [
-                        "report"
-                    ],
-                    [
-                        "report",
-                        "owls"
-                    ],
-                    [
                         "rolled"
                     ],
                     [
@@ -8472,33 +8231,12 @@
                     ],
                     [
                         "room",
-                        "almost"
-                    ],
-                    [
-                        "room",
-                        "almost",
-                        "exactly"
-                    ],
-                    [
-                        "room",
                         "held"
                     ],
                     [
                         "room",
                         "held",
                         "sign"
-                    ],
-                    [
-                        "rose"
-                    ],
-                    [
-                        "rose",
-                        "tidy"
-                    ],
-                    [
-                        "rose",
-                        "tidy",
-                        "front"
                     ],
                     [
                         "sad"
@@ -8559,18 +8297,6 @@
                         "secret",
                         "country",
                         "holding"
-                    ],
-                    [
-                        "seen"
-                    ],
-                    [
-                        "seen",
-                        "fateful"
-                    ],
-                    [
-                        "seen",
-                        "fateful",
-                        "news"
                     ],
                     [
                         "shaggy"
@@ -8717,18 +8443,6 @@
                         "lily"
                     ],
                     [
-                        "step"
-                    ],
-                    [
-                        "step",
-                        "number"
-                    ],
-                    [
-                        "step",
-                        "number",
-                        "four"
-                    ],
-                    [
                         "stepped"
                     ],
                     [
@@ -8739,18 +8453,6 @@
                         "stepped",
                         "low",
                         "garden"
-                    ],
-                    [
-                        "sun"
-                    ],
-                    [
-                        "sun",
-                        "rose"
-                    ],
-                    [
-                        "sun",
-                        "rose",
-                        "tidy"
                     ],
                     [
                         "taking"
@@ -8775,18 +8477,6 @@
                         "ter",
                         "muggles",
                         "handkerchief"
-                    ],
-                    [
-                        "tidy"
-                    ],
-                    [
-                        "tidy",
-                        "front"
-                    ],
-                    [
-                        "tidy",
-                        "front",
-                        "gardens"
                     ],
                     [
                         "took"
