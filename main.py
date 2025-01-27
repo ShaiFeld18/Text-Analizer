@@ -2,6 +2,8 @@
 
 import argparse
 
+from tasks.all_tasks import TaskRunner
+
 
 def read_args(args=None):
     parser = argparse.ArgumentParser(
@@ -54,4 +56,10 @@ def read_args(args=None):
     parser.add_argument('--qsek_query_path',
                         help="json file with query path",
                         )
+    # TODO: add path to examples dir and data dir
     return parser.parse_args(args)
+
+
+if __name__ == '__main__':
+    args = read_args()
+    print(TaskRunner(args).run_task())
