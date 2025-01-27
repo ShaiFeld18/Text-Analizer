@@ -267,9 +267,6 @@ class TextAnalyzer:
         names_to_context.sort(key=lambda x: x[0])
         return names_to_context
 
-    def _find_distance_between_sentences(self, a: list[str], b: list[str]) -> int:
-        return abs(self.sentences.index(a) - self.sentences.index(b))
-
     def find_connections(self, window_size: int, threshold: int) -> list[list[list[str]]]:
         """
         Find pairs of people who appear within distinct windows of sentences.
