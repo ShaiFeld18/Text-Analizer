@@ -4,7 +4,7 @@ import string
 
 import pandas as pd
 
-from tasks.utils import flatten_list
+from utils import flatten_list
 
 
 def _process_string(string_to_process: str) -> str:

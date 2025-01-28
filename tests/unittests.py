@@ -2,10 +2,10 @@ import json
 import os
 
 from main import read_args
-from tasks.all_tasks import TaskRunner
+from all_tasks import TaskRunner
 
-EXAMPLES_PATH = os.path.join('..', 'examples')
-REMOVE_WORDS_PATH = os.path.join('..', 'data', 'REMOVEWORDS.csv')
+EXAMPLES_PATH = os.path.join('examples')
+REMOVE_WORDS_PATH = os.path.join('data', 'REMOVEWORDS.csv')
 
 # Additional arguments for specific tasks and examples
 additional_args_by_task = {

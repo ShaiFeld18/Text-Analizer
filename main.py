@@ -2,7 +2,7 @@
 
 import argparse
 
-from tasks.all_tasks import TaskRunner
+from all_tasks import TaskRunner
 
 
 def read_args(args=None):
