@@ -5,13 +5,24 @@ from src.utils.files_utils import read_json_file
 
 
 class TaskDefinitions:
-    """Contains all task implementation logic"""
+    """Contains all tasks implementation logic"""
 
     def __init__(self, analyzer: TextAnalyzer):
         self.analyzer = analyzer
 
     def task_1(self) -> Dict[str, Any]:
-        """Process and return basic text analysis"""
+        """
+        Process text by the basic steps:
+            1) lowercase
+            2) remove punctuation
+            3) remove consecutive whitespaces
+            4) strip
+            5) split to list of words
+            6) remove unwanted words
+            7) remove empty sentences and names
+            8) remove duplicate names (not sentences)
+        :return: processed sentences and names
+        """
         return {
             "Processed Sentences": self.analyzer.sentences,
             "Processed Names": self.analyzer.persons

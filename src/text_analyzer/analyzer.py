@@ -9,35 +9,32 @@ from ..utils.text_utils import flatten_list
 
 
 class TextAnalyzer:
-    """Main analyzer class with enhanced organization"""
+    """Main Text Analyzer"""
 
     def __init__(self,
                  path_to_sentences: Optional[str] = None,
                  path_to_persons: Optional[str] = None,
                  path_to_unwanted_words: Optional[str] = None,
                  sentences: Optional[List[List[str]]] = None,
-                 persons: Optional[List[List[List[str]]]] = None,
-                 unwanted_words: Optional[List[str]] = None):
-
+                 persons: Optional[List[List[List[str]]]] = None):
         self.processor = TextProcessor()
         self.graph_analyzer = GraphAnalyzer()
 
-        # Initialize as before, but using the processor
+        # load unwanted words
+        if path_to_unwanted_words is None:
+            raise ValueError("You must provide path to unwanted words.")
+        self.unwanted_words = self.processor.process_unwanted_words(path_to_unwanted_words)
+
+        # checks if we were given processed data or paths to unprocessed files
         paths_provided = path_to_sentences is not None or path_to_persons is not None
         processed_data_provided = sentences is not None or persons is not None
-
         if paths_provided and processed_data_provided:
             raise ValueError("You must provide either paths or processed data, not both.")
 
-        if path_to_unwanted_words is None:
-            raise ValueError("You must provide path to unwanted words.")
-
-        self.unwanted_words = self.processor.process_unwanted_words(path_to_unwanted_words)
-
+        # load data
         if processed_data_provided:
             self.sentences = sentences
             self.persons = persons
-
         if paths_provided:
             self.sentences = self._process_sentences(path_to_sentences)
             self.persons = self._process_persons(path_to_persons)
@@ -76,7 +73,7 @@ class TextAnalyzer:
             2. Each name is represented as a list of lists:
                - The first list contains the real name.
                - The second list contains any additional names associated with the real name.
-        It also ensures that no duplicate names are present.
+        It also removes duplicate names.
         """
         if path_to_names is None:
             return []
@@ -85,15 +82,18 @@ class TextAnalyzer:
         names.fillna('', inplace=True)
         name_col, additional_names_col = names.columns[0], names.columns[1]
 
+        # process Main Name
         names[name_col] = names[name_col].apply(self.processor.process_string)  # basic preprocess
         names[name_col] = names[name_col].apply(str.split)  # split to list of words
         names[name_col] = names[name_col].apply(lambda x: self._remove_unwanted_words(x))  # remove unwanted words
-
         # drop duplicates
         names['full_name'] = names[name_col].apply(lambda x: ' '.join(x))
         names.drop_duplicates(subset='full_name', keep="first", inplace=True)
         names.drop('full_name', axis=1, inplace=True)
+        # drop name with empty Main Name
+        names.drop(names[names[name_col].apply(len) == 0].index)
 
+        # process additional names
         names[additional_names_col] = names[additional_names_col].apply(
             lambda x: [self._remove_unwanted_words(  # remove unwanted words
                 self.processor.process_string(name).split()  # basic preprocess + split to list of words
@@ -102,12 +102,14 @@ class TextAnalyzer:
         names[additional_names_col] = names[additional_names_col].apply(  # remove empty nicknames
             lambda x: x if len(x[0]) > 0 else []
         )
+
         return names.values.tolist()
 
     def _map_seq_by_len_to_sentences(self, seq_len: int) -> Dict[str, Dict[str, Any]]:
         """
         Find all sequences of given length in text.
-        Find all the sentences each sequence appears and count how many times the sequences appeared.
+        Find all the sentences each sequence appears in.
+        Count how many times the sequences appeared in the text.
 
         :param seq_len: length of sequences to find
         :return: a dict mapping sequences to their occurrences and containing sentences
@@ -198,29 +200,30 @@ class TextAnalyzer:
             sequences: List[List[str]] = json.load(file)["keys"]
 
         sequences = [self._remove_unwanted_words(self.processor.process_string(' '.join(seq)).split())
-                     for seq in sequences]
+                     for seq in sequences]  # process file
         drop_duplicates = set([tuple(seq) for seq in sequences if len(seq) > 0])
         sequences = [list(seq) for seq in drop_duplicates]
 
         return self._search_sequences_in_text(sequences)
 
     def _map_names_to_sentences(self) -> Dict[str, List[List[str]]]:
-        """Maps each person's name to sentences where they appear"""
+        """
+        Maps each person's name to sentences where they appear.
+        :return: people mapped to sentences they appear in.
+        """
         names_to_sentences = {}
 
         for person in self.persons:
-            names_to_find = [[name] for name in person[0]] + \
-                            [[" ".join(person[0])]] + person[1]
+            names_to_find = [[name] for name in person[0]] + [[" ".join(person[0])]] + person[1]
 
             sentences_with_name = self._search_sequences_in_text(names_to_find)
             sentences_with_name = [sentences[1] for sentences in sentences_with_name]
             sentences_with_name = set([tuple(sentence)
                                        for sentences in sentences_with_name
-                                       for sentence in sentences])
+                                       for sentence in sentences])  # drop duplicate sentences
 
             if len(sentences_with_name) > 0:
-                names_to_sentences[' '.join(person[0])] = [list(sentence)
-                                                           for sentence in sentences_with_name]
+                names_to_sentences[' '.join(person[0])] = [list(sentence) for sentence in sentences_with_name]
 
         return names_to_sentences
 
@@ -253,7 +256,7 @@ class TextAnalyzer:
         Find pairs of people who appear within distinct windows of sentences.
 
         :param window_size: Size of windows
-        :param threshold: Minimum number of times two people must appear within a window
+        :param threshold: Minimum number of windows two people must appear together
         :return: List of pairs of connected persons
         """
         persons_to_sentences = self._map_names_to_sentences()
@@ -280,6 +283,7 @@ class TextAnalyzer:
                     if any(sentence in window for sentence in sentences_a) and \
                             any(sentence in window for sentence in sentences_b):
                         counter += 1
+                # check the pair pass the threshold of windows they must be together in
                 if counter >= threshold:
                     connections.append(sorted([person_a.split(), person_b.split()]))
 
@@ -304,7 +308,14 @@ class TextAnalyzer:
                                   window_size: int,
                                   threshold: int,
                                   maximal_distance: int) -> Dict[Tuple[str, str], List[List[str]]]:
-        """Find all indirect connections between pairs of persons"""
+        """
+        Find all indirect connections between pairs of persons.
+        :param pairs_to_check: pairs to check.
+        :param window_size: size of windows.
+        :param threshold: number of windows two people must appear together.
+        :param maximal_distance: maximal distance between pairs.
+        :return:
+        """
         graph = self.find_connections(window_size, threshold)
         for pair in graph:
             pair[0], pair[1] = ' '.join(pair[0]), ' '.join(pair[1])
@@ -314,11 +325,7 @@ class TextAnalyzer:
             if start == '' or end == '':
                 results[(start, end)] = []
                 continue
-            results[(start, end)] = self.graph_analyzer.find_all_paths(
-                graph,
-                start,
-                end,
-                maximal_distance)
+            results[(start, end)] = self.graph_analyzer.find_all_paths(graph, start, end, maximal_distance)
         return results
 
     def indirect_connections(self,

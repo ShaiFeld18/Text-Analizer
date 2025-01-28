@@ -1,26 +1,37 @@
-from typing import List, Set, Tuple, Dict
+from typing import List
 
 
 class GraphAnalyzer:
-    """Handles graph-related operations for text analysis"""
+    """Handles graph operations"""
 
     @staticmethod
-    def find_all_paths(graph: List[List[str]], start: str, end: str, max_len: int) -> List[List[str]]:
-        """Find all paths between two nodes in a graph with maximum length constraint"""
+    def find_all_paths(graph: List[List[List[str]]],
+                       start: List[str],
+                       end: str,
+                       max_len: int) -> List[List[List[str]]]:
+        """
+        Find all paths between two nodes in a graph with maximum length.
+        :param graph: graph of connected people.
+        :param start: starting node.
+        :param end: destination node.
+        :param max_len: max length of a path.
+        :return: List of all possible paths from start to end up to max length.
+        """
+        paths = []
+        stack = [(start, [start])]  # Stack holds tuples of (current_node, current_path)
 
-        def dfs(current: str, path: List[str]) -> List[List[str]]:
+        while stack:
+            current, path = stack.pop()
+
             if len(path) > max_len:
-                return []
+                continue
             if current == end:
-                return [path]
+                paths.append(path)
+                continue
 
-            paths = []
             for edge in graph:
-                if (edge[0] == current and edge[1] not in path) or \
-                        (edge[1] == current and edge[0] not in path):
+                if (edge[0] == current and edge[1] not in path) or (edge[1] == current and edge[0] not in path):
                     next_node = edge[1] if edge[0] == current else edge[0]
-                    new_paths = dfs(next_node, path + [next_node])
-                    paths.extend(new_paths)
-            return paths
+                    stack.append((next_node, path + [next_node]))
 
-        return dfs(start, [start])
+        return paths
