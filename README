@@ -1,5 +1,34 @@
 # Text Analyzer / Shai Feldman
 
 ## Design
+- src
+    - tasks
+        - task_definitions
+            * defines what each task does and the result model
+        - task_runner
+            * runs a task by the definitions with the proper arguments
+    - text_analyzer
+        - processor
+            * does basic preprocess of strings
+        - graph
+            * implements basic graph functions like path finding
+        - analyzer
+            * uses th previous two classes to analyze a text
+    - utils
+        * generic utils functions
+- main.py
+    * runs everything with the arguments from CMD
+- tests
+    * contains all the files from moodle to tests the tasks
+- test_tasks.py
+    * tests all tasks by the given files from moodle
 
-
+## Example Usage by Task
+1) python main.py -t 1 -r tests\data\REMOVEWORDS.csv -n tests\examples\Q1_examples\example_1\people_small_1.csv -s tests\examples\Q1_examples\example_1\sentences_small_1.csv
+2) python main.py -t 2 -r tests\data\REMOVEWORDS.csv --maxk 3 -n tests\examples\Q2_examples\example_1\people_small_1.csv -s tests\examples\Q2_examples\example_1\sentences_small_1.csv
+3) python main.py -t 3 -r tests\data\REMOVEWORDS.csv -n tests\examples\Q3_examples\example_1\people_small_1.csv -s tests\examples\Q3_examples\example_1\sentences_small_1.csv
+4) python main.py -t 4 -r tests\data\REMOVEWORDS.csv --qsek_query_path tests\examples\Q4_examples\example_1\kseq_query_keys_1.json -s tests\examples\Q4_examples\example_1\sentences_small_1.csv
+5) python main.py -t 5 -r tests\data\REMOVEWORDS.csv --maxk 3 -n tests\examples\Q5_examples\example_1\people_small_1.csv -s tests\examples\Q5_examples\example_1\sentences_small_1.csv
+6) python main.py -t 6 -r tests\data\REMOVEWORDS.csv --windowsize 4 --threshold 4 -n tests\examples\Q6_examples\example_1\people_small_1.csv -s tests\examples\Q6_examples\example_1\sentences_small_1.csv
+7) python main.py -t 7 -r tests\data\REMOVEWORDS.csv --pairs tests\examples\Q7_examples\example_1\people_connections_1.json --windowsize 5 --threshold 2 --maximal_distance 1000 -n tests\examples\Q7_examples\example_1\people_small_1.csv -s tests\examples\Q7_examples\example_1\sentences_small_1.csv
+8) python main.py -t 8 -r tests\data\REMOVEWORDS.csv --pairs tests\examples\Q8_examples\example_1\people_connections_1.json --windowsize 5 --threshold 2 --fixed_length 2 -n tests\examples\Q8_examples\example_1\people_small_1.csv -s tests\examples\Q8_examples\example_1\sentences_small_1.csv
