@@ -6,7 +6,7 @@ from ..utils.files_utils import read_json_file
 
 
 class TaskRunner:
-    """Enhanced task runner with better organization"""
+    """Task runner"""
 
     def __init__(self, args):
         self.analyzer = self._initialize_analyzer(args)

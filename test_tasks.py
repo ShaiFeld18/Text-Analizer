@@ -78,12 +78,12 @@ def test_task(question_num, example_path, example_num):
 
     results = TaskRunner(parsed_args).run_task()
 
-    # Load expected solution
+    # Load solution
     result_file = list(example_path.glob(f"Q{question_num}_result*.json"))[0]
     with result_file.open('r') as file:
         expected_results = json.load(file)
 
-    # Compare results with expected output
+    # Compare results
     assert results == expected_results, (
         f"\nExpected: {expected_results}\n"
         f"Got: {results}"

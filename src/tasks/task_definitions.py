@@ -5,7 +5,7 @@ from src.utils.files_utils import read_json_file
 
 
 class TaskDefinitions:
-    """Contains all tasks implementation logic"""
+    """Contains all tasks"""
 
     def __init__(self, analyzer: TextAnalyzer):
         self.analyzer = analyzer
