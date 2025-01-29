@@ -78,7 +78,7 @@ class TextAnalyzer:
         if path_to_names is None:
             return []
 
-        names = pd.read_csv(path_to_names)
+        names = pd.read_csv(path_to_names, dtype=str)
         names.fillna('', inplace=True)
         name_col, additional_names_col = names.columns[0], names.columns[1]
 
