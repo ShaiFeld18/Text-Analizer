@@ -8,7 +8,6 @@ from src.tasks.task_runner import TaskRunner
 EXAMPLES_PATH = os.path.join('tests/examples')
 REMOVE_WORDS_PATH = os.path.join('tests/data', 'REMOVEWORDS.csv')
 
-# Additional arguments for specific tasks
 additional_args_by_task = {
     "2": {
         "1": ["--maxk", "3"],
@@ -69,22 +68,14 @@ def get_test_cases():
 
 @pytest.mark.parametrize("question_num,example_path,example_num", get_test_cases())
 def test_task(question_num, example_path, example_num):
-    """Test individual task implementation"""
     # Prepare arguments for the task
     args = ["-t", str(question_num), "-r", str(REMOVE_WORDS_PATH)]
     args.extend(additional_args_by_task.get(str(question_num), {}).get(example_num, []))
-
-    # Add optional files if they exist
-    people_file = example_path / f"people_small_{example_num}.csv"
-    sentences_file = example_path / f"sentences_small_{example_num}.csv"
-
-    if people_file.exists():
-        args.extend(["-n", str(people_file)])
-    if sentences_file.exists():
-        args.extend(["-s", str(sentences_file)])
-
-    # Parse arguments and run the task
+    if Path(str(example_path / f"people_small_{example_num}.csv")).exists():
+        args.extend(["-n", str(example_path / f"people_small_{example_num}.csv")])
+    args.extend(["-s", str(example_path / f"sentences_small_{example_num}.csv")])
     parsed_args = parse_args(args)
+
     results = TaskRunner(parsed_args).run_task()
 
     # Load expected solution
